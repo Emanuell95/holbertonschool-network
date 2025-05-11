@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script updates /etc/hosts to remap localhost and facebook.com
 
 if [ "$EUID" -ne 0 ]; then

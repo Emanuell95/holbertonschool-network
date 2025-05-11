@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# OSI Model
-2
+# Writes the correct answer numbers for both OSI model questions to separate files
 
-2
+echo "2" > 0-answer  # Answer to: What is the OSI model?
+echo "2" > 1-answer  # Answer to: How is the OSI model organized?

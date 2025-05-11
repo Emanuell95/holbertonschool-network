@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-# This script uses ping to ping the ip passed as an arg 5 times
-if [ $# -eq 0 ]; then
-	echo 'Usage: 5-is_the_host_on_the_network {IP_ADDRESS}'
-else
-	if ping -c 5 "$1"; then
-		echo "Host $1 is reachable."
-	else
-		echo "Host $1 is not reachable."
-	fi
+# Pings an IP address passed as an argument, 5 times
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+    exit 1
 fi
+
+ping -c 5 "$1"

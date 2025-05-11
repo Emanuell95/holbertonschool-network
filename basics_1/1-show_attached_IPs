@@ -1,0 +1,6 @@
+#!/usr/bin/ env bash
+# Display all active IPv4 addresses on this machine
+
+# Use the `ip` command to list IPv4 addresses on interfaces that are UP,
+# then extract just the address portion (before the slash).
+ip -4 -o addr show up | awk '{print $4}' | cut -d/ -f1

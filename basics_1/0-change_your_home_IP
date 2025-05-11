@@ -9,10 +9,16 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-# Remove existing entries if they exist
-sed -i '/\slocalhost/d' /etc/hosts
-sed -i '/facebook\.com/d' /etc/hosts
+# Use a temporary file for safe replacement
+tmpfile=$(mktemp)
 
-# Add required mappings
-echo "127.0.0.2 localhost" >> /etc/hosts
-echo "8.8.8.8 facebook.com" >> /etc/hosts
+# Remove any lines containing 'localhost' or 'facebook.com'
+grep -vE 'localhost|facebook\.com' /etc/hosts > "$tmpfile"
+
+# Add the new mappings
+echo "127.0.0.2 localhost" >> "$tmpfile"
+echo "8.8.8.8 facebook.com" >> "$tmpfile"
+
+# Replace the original hosts file
+cat "$tmpfile" > /etc/hosts
+rm "$tmpfile"

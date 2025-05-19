@@ -1,0 +1,143 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions for arrows and shadows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555" />
+    </marker>
+    <marker id="dashedarrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0078D4" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold" fill="#333333">HTTPS Request Flow</text>
+  <text x="450" y="70" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#666666">What happens when you type https://www.google.com</text>
+  
+  <!-- Background rect for Google Infrastructure -->
+  <rect x="220" y="180" width="550" height="320" rx="15" ry="15" fill="#f8f9fa" stroke="#e1e4e8" stroke-width="2" filter="url(#shadow)" />
+  <text x="495" y="210" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold" fill="#444444">Google Infrastructure</text>
+  
+  <!-- Nodes -->
+  <g id="browser">
+    <rect x="70" y="120" width="120" height="60" rx="10" ry="10" fill="#fff4db" stroke="#f0b400" stroke-width="2" filter="url(#shadow)" />
+    <text x="130" y="157" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333333">Browser</text>
+  </g>
+  
+  <g id="dns">
+    <circle cx="400" cy="120" r="45" fill="#f5ebff" stroke="#8c52ff" stroke-width="2" filter="url(#shadow)" />
+    <!-- Added background rectangle for better text visibility -->
+    <rect x="350" y="110" width="100" height="22" rx="5" ry="5" fill="#f5ebff" stroke="none" />
+    <text x="400" y="127" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333333">DNS Resolver</text>
+  </g>
+  
+  <g id="firewall">
+    <rect x="270" y="250" width="120" height="60" rx="10" ry="10" fill="#ffefef" stroke="#e05260" stroke-width="2" filter="url(#shadow)" />
+    <text x="330" y="287" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333333">Firewall</text>
+  </g>
+  
+  <g id="loadbalancer">
+    <rect x="450" y="250" width="120" height="60" rx="10" ry="10" fill="#ffefef" stroke="#e05260" stroke-width="2" filter="url(#shadow)" />
+    <text x="510" y="287" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333333">Load Balancer</text>
+  </g>
+  
+  <g id="webserver">
+    <rect x="630" y="250" width="120" height="60" rx="10" ry="10" fill="#e6f7ef" stroke="#00a36c" stroke-width="2" filter="url(#shadow)" />
+    <text x="690" y="287" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333333">Web Server</text>
+  </g>
+  
+  <g id="appserver">
+    <rect x="630" y="370" width="120" height="60" rx="10" ry="10" fill="#e6f7ef" stroke="#00a36c" stroke-width="2" filter="url(#shadow)" />
+    <text x="690" y="407" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333333">Application Server</text>
+  </g>
+  
+  <g id="database">
+    <ellipse cx="400" cy="400" rx="65" ry="35" fill="#f5ebff" stroke="#8c52ff" stroke-width="2" filter="url(#shadow)" />
+    <text x="400" y="405" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold" fill="#333333">Database</text>
+  </g>
+  
+  <!-- Connection lines -->
+  <!-- Browser to DNS -->
+  <line x1="190" y1="135" x2="350" y2="120" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="235" y="100" width="130" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="300" y="118" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">1. DNS lookup</text>
+  
+  <!-- DNS to Browser -->
+  <line x1="350" y1="140" x2="190" y2="155" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="235" y="155" width="130" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="300" y="173" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">2. IP address</text>
+  
+  <!-- Browser to Firewall -->
+  <line x1="130" y1="180" x2="290" y2="245" stroke="#0078D4" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#dashedarrowhead)" />
+  <!-- Enhanced visibility for step 3 -->
+  <rect x="125" y="200" width="170" height="28" rx="14" ry="14" fill="#0078D4" stroke="#ffffff" stroke-width="1.5" />
+  <text x="210" y="220" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">3. TLS (HTTPS:443)</text>
+  
+  <!-- Firewall to Load Balancer -->
+  <line x1="390" y1="280" x2="450" y2="280" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="405" y="260" width="30" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="420" y="278" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">4</text>
+  
+  <!-- Load Balancer to Web Server -->
+  <line x1="570" y1="280" x2="630" y2="280" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="585" y="260" width="30" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="600" y="278" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">5</text>
+  
+  <!-- Web Server to App Server -->
+  <line x1="690" y1="310" x2="690" y2="370" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="670" y="335" width="30" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="685" y="353" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">6</text>
+  
+  <!-- App Server to Database -->
+  <line x1="630" y1="400" x2="465" y2="400" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="525" y="380" width="80" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="565" y="398" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">7. Query</text>
+  
+  <!-- Database to App Server -->
+  <line x1="465" y1="420" x2="630" y2="420" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="525" y="422" width="80" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="565" y="440" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">8. Data</text>
+  
+  <!-- App Server to Web Server -->
+  <line x1="670" y1="370" x2="670" y2="310" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="640" y="335" width="30" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="655" y="353" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">9</text>
+  
+  <!-- Web Server to Load Balancer -->
+  <line x1="630" y1="260" x2="570" y2="260" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="585" y="235" width="40" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="605" y="253" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">10</text>
+  
+  <!-- Load Balancer to Firewall -->
+  <line x1="450" y1="260" x2="390" y2="260" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)" />
+  <rect x="405" y="235" width="40" height="24" rx="12" ry="12" fill="#4a4a4a" stroke="none" />
+  <text x="425" y="253" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">11</text>
+  
+  <!-- Firewall to Browser -->
+  <line x1="290" y1="245" x2="130" y2="180" stroke="#0078D4" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#dashedarrowhead)" />
+  <!-- Enhanced visibility for step 12 -->
+  <rect x="125" y="175" width="190" height="28" rx="14" ry="14" fill="#0078D4" stroke="#ffffff" stroke-width="1.5" />
+  <text x="220" y="195" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">12. Encrypted response</text>
+  
+  <!-- Legend with fixed size -->
+  <rect x="630" y="500" width="230" height="85" rx="5" ry="5" fill="white" stroke="#e1e4e8" stroke-width="1" filter="url(#shadow)" />
+  <text x="745" y="520" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#555">Legend</text>
+  
+  <rect x="645" y="532" width="16" height="16" fill="#fff4db" stroke="#f0b400" stroke-width="1" />
+  <text x="670" y="544" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#555">Client</text>
+  
+  <rect x="710" y="532" width="16" height="16" fill="#ffefef" stroke="#e05260" stroke-width="1" />
+  <text x="735" y="544" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#555">Security</text>
+  
+  <rect x="645" y="552" width="16" height="16" fill="#e6f7ef" stroke="#00a36c" stroke-width="1" />
+  <text x="670" y="564" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#555">Server</text>
+  
+  <rect x="710" y="552" width="16" height="16" fill="#f5ebff" stroke="#8c52ff" stroke-width="1" />
+  <text x="735" y="564" font-family="Arial, sans-serif" font-size="12" text-anchor="start" fill="#555">Data</text>
+  
+  <!-- Fixed line and text position for encrypted legend -->
+  <line x1="770" y1="540" x2="790" y2="540" stroke="#0078D4" stroke-width="2" stroke-dasharray="4,2" />
+  <text x="820" y="544" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555">Encrypted</text>
+</svg>

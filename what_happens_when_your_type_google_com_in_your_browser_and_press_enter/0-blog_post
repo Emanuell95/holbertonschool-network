@@ -1,0 +1,150 @@
+# What Happens When You Type [https://www.google.com](https://www.google.com) and Press Enter?
+
+Have you ever wondered what really happens behind the scenes when you type `https://www.google.com` into your web browser and hit Enter? That seemingly simple action initiates a complex sequence of steps involving multiple systems and protocols. This process is foundational to understanding how the modern web works.
+
+In this article, we'll explore the end-to-end journey of your request, covering the following key components:
+
+* DNS Request
+* TCP/IP
+* Firewall
+* HTTPS/SSL
+* Load Balancer
+* Web Server
+* Application Server
+* Database
+
+---
+
+## 1. DNS Request: Finding the Server
+
+The journey begins with resolving the human-readable domain name `www.google.com` into an IP address that machines understand.
+
+### How it works:
+
+* The browser first checks its DNS cache.
+* If not found, the request is sent to your operating system, which may consult the router or ISP’s DNS resolver.
+* If needed, the DNS resolver contacts root name servers, TLD (Top-Level Domain) servers, and finally Google's authoritative name server.
+* The result is an IP address, such as `142.250.190.68`, which is returned to the browser.
+
+This step is crucial because all subsequent communication depends on knowing the correct IP address of the server.
+
+---
+
+## 2. TCP/IP: Establishing a Connection
+
+With the IP address known, the browser uses the TCP/IP protocol suite to establish a connection.
+
+### Process:
+
+* **TCP** (Transmission Control Protocol) initiates a three-way handshake (SYN, SYN-ACK, ACK) to ensure a reliable connection.
+* **IP** (Internet Protocol) routes packets between your device and Google’s server.
+
+TCP/IP ensures that data is transmitted reliably and in the correct order across the network.
+
+---
+
+## 3. Firewall: Protecting the Network
+
+Before your request leaves your machine and after it arrives at Google’s data center, it must pass through firewalls.
+
+### Functions:
+
+* On your end, a local or router-based firewall checks outgoing traffic.
+* At Google’s end, firewalls filter incoming requests to protect against malicious activity.
+
+Firewalls act as gatekeepers, enforcing security policies by allowing or blocking traffic based on IP address, port, or protocol.
+
+---
+
+## 4. HTTPS/SSL: Securing the Communication
+
+Since the URL starts with `https://`, your browser initiates an encrypted connection using SSL/TLS protocols.
+
+### What happens:
+
+* The browser and server perform an SSL handshake.
+* The server presents its digital certificate, which the browser verifies.
+* A session key is negotiated and used to encrypt subsequent communication.
+
+This ensures data privacy, integrity, and authentication between your device and Google.
+
+---
+
+## 5. Load Balancer: Distributing the Load
+
+Once inside Google’s infrastructure, your request first hits a **load balancer**.
+
+### Responsibilities:
+
+* Distributes traffic across multiple backend servers.
+* Ensures high availability and fault tolerance.
+* Routes traffic based on location, server health, and current load.
+
+Google’s global load balancers ensure that your request is handled quickly and efficiently, often by a nearby server.
+
+---
+
+## 6. Web Server: Handling the HTTP Request
+
+Next, your request is forwarded to a **web server**, such as Google’s custom infrastructure or an Nginx/Apache server.
+
+### Tasks:
+
+* Parses the incoming HTTP request.
+* Serves static content directly (e.g., HTML, CSS, JS).
+* For dynamic content, it delegates the request to an application server.
+
+---
+
+## 7. Application Server: Executing Logic
+
+The web server hands off dynamic requests to an **application server**, which runs the backend logic.
+
+### Actions:
+
+* Processes input (e.g., search query).
+* Handles sessions and cookies.
+* Interacts with one or more databases.
+* Generates an appropriate response (usually in HTML or JSON).
+
+---
+
+## 8. Database: Accessing Data
+
+The application server may query a **database** to fetch or update data.
+
+### Google’s databases:
+
+* Likely a mix of highly-optimized, distributed databases.
+* Store search indexes, user preferences, and session data.
+* Return results that are used to craft the final web page.
+
+---
+
+## The Response
+
+Finally, the generated response travels back:
+
+1. From the application server to the web server.
+2. Through the load balancer.
+3. Over the encrypted HTTPS connection.
+4. Into your browser, where the HTML is parsed and rendered.
+
+All of this happens in fractions of a second.
+
+---
+
+## Conclusion
+
+Typing `https://www.google.com` and pressing Enter triggers a rich and intricate series of steps:
+
+* 🧭 **DNS** resolves the domain.
+* 🌐 **TCP/IP** establishes the connection.
+* 🔥 **Firewalls** secure traffic.
+* 🔒 **HTTPS/SSL** encrypts data.
+* ⚖️ **Load balancers** optimize resource use.
+* 🖥️ **Web servers** process requests.
+* ⚙️ **Application servers** execute business logic.
+* 🗄️ **Databases** supply the data.
+
+Understanding this flow is fundamental for any software engineer—it bridges front-end, back-end, and infrastructure knowledge into one cohesive system.
